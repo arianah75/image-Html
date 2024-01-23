@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Practice</title>
+  <style>
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  .circle {
+    position: absolute;
+    background-color: rgba(251, 1, 1, 0.55);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .circle.active {
+    background-color: rgba(251, 1, 1, 1); /* Brighter color */
+  }
+  .description {
+    display: none; /* Hide all descriptions initially */
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+  }
+  </style>
+</head>
+<body>
+<div class="image-container">
+  <img src="/images/1.png">
+  <div class="circle" style="top: 50px; left: 100px;"></div>
+  <div class="circle" style="top: 150px; left: 200px;"></div>
+  <div class="circle" style="top: 250px; left: 300px;"></div>
+</div>
+<div class="description">
+  <p>Description 1</p>
+</div>
+<div class="description">
+  <p>Description 2</p>
+</div>
+<div class="description">
+  <p>Description 3</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.circle').click(function() {
+    $('.circle').removeClass('active'); /* Remove active class from all circles */
+    $(this).addClass('active'); /* Add active class to clicked circle */
+
+    var index = $(this).index();
+    $('.description').hide(); /* Hide all descriptions */
+    $('.description').eq(index).show(); /* Show the corresponding description */
+  });
+});
+</script>
+</body>
+</html>
