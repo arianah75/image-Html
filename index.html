@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Practice</title>
   <style>
-  .image-container {
+  /* .image-container {
     position: relative;
     display: inline-block;
-  }
+  } */
   .circle {
     position: absolute;
     background-color: rgba(251, 1, 1, 0.55);
@@ -21,40 +21,49 @@
     background-color: rgba(251, 1, 1, 1); /* Brighter color */
   }
   .description {
+    position: absolute;
+    background-color: antiquewhite;
     display: none; /* Hide all descriptions initially */
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
+    padding: 10px;
+    z-index: 1; /* Ensure descriptions appear above circles */
+    border-radius: 10px; /* make edge round */
   }
   </style>
 </head>
 <body>
 <div class="image-container">
-  <img src="/images/1.png">
   <div class="circle" style="top: 50px; left: 100px;"></div>
+  <div class="description" style="top: 70px; left: 120px;">
+    <p>Description 1</p>
+  </div>
+
   <div class="circle" style="top: 150px; left: 200px;"></div>
+  <div class="description" style="top: 170px; left: 220px;">
+    <p>Description 2</p>
+  </div>
+
   <div class="circle" style="top: 250px; left: 300px;"></div>
-</div>
-<div class="description">
-  <p>Description 1</p>
-</div>
-<div class="description">
-  <p>Description 2</p>
-</div>
-<div class="description">
-  <p>Description 3</p>
+  <div class="description" style="top: 270px; left: 320px;">
+    <p>Description 3</p>
+  </div>
+
+  <img src="/images/1.png">
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
   $('.circle').click(function() {
-    $('.circle').removeClass('active'); /* Remove active class from all circles */
-    $(this).addClass('active'); /* Add active class to clicked circle */
+    var isActive = $(this).hasClass('active');
 
-    var index = $(this).index();
-    $('.description').hide(); /* Hide all descriptions */
-    $('.description').eq(index).show(); /* Show the corresponding description */
+    $('.circle').removeClass('active');
+    $('.description').hide();
+
+    if (!isActive) {
+      $(this).addClass('active');
+      var index = $(this).index() / 2;
+      $('.description').eq(index).show();
+    }
   });
 });
 </script>
