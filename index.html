@@ -61,7 +61,8 @@ $(document).ready(function() {
 
     if (!isActive) {
       $(this).addClass('active');
-      var index = $(this).index() / 2;
+      var index = $(this).index();
+      console.log(index);
       $('.description').eq(index).show();
     }
   });
